@@ -317,3 +317,4 @@ start:
 main ENDP 
 END main 
 
+; LEA EDI, vector is the same as mov EDI, offset vector learn this in class today 
