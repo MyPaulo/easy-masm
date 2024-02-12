@@ -26,7 +26,7 @@ main PROC
 	; program syntax here
 	mov EDX, offset val3
 	call WriteString ; display hellword  
-	call crlf  ; space
+	call crlf  ; space or \n  
 
     mov eax,val1
     add ax, val2

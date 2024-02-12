@@ -12,15 +12,20 @@ INCLUDELIB Irvine32.lib
 INCLUDELIB kernel32.lib
 INCLUDELIB user32.lib
 
+
 .data
     
 	; data declarations go here
+    
 
+   
 .code
 main PROC
 
 	; code goes here
-	call DumpRegs ; displays registers in console
+    
+
+	;call DumpRegs ; displays registers in console
 	exit
 
 main ENDP
