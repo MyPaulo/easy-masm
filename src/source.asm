@@ -21,7 +21,6 @@ main PROC
 	
 	; code goes here
 	call DumpRegs ; displays registers in console
-
 	exit
 
 main ENDP
