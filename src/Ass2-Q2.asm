@@ -3,6 +3,13 @@ INCLUDELIB Irvine32.lib
 INCLUDELIB kernel32.lib
 INCLUDELIB user32.lib
 
+TITLE Ass2-Q1.asm
+
+; Name: 
+; Date: 
+; ID: 
+; Description: 
+
 .data
     ; Declare and initialize data
     promptN BYTE "Enter N terms: ",0  ; Prompt for user input

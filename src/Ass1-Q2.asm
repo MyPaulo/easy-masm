@@ -1,8 +1,8 @@
 TITLE Convert Big Endian to Little Endian
 
-; Name: Paul osuji, Okereke Chukwudi
+; Name: 
 ; Date: 
-; ID: 110157511, 110092325
+; ID: 
 ; Description: This program takes a big endian number as input and converts it 
 ;to little endian format. It then displays the values of both formats on the console
 

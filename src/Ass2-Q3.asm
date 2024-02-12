@@ -3,6 +3,13 @@ INCLUDELIB Irvine32.lib
 INCLUDELIB kernel32.lib
 INCLUDELIB user32.lib
 
+TITLE Ass2-Q1.asm
+
+; Name: 
+; Date: 
+; ID: 
+; Description: 
+
 .data
     buff BYTE 129 DUP(0)  ; Array for 128 characters + null terminator
     promptAsk BYTE "Enter a string of at most 128 characters: ", 0

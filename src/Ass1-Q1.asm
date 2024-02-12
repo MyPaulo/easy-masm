@@ -1,8 +1,8 @@
 TITLE  Calculate Z=(A-B)-(C-D) in Assembly
 
-; Name: Paul osuji, Okereke Chukwudi
+; Name: 
 ; Date: 
-; ID: 110157511, 110092325
+; ID: 
 ; Description: This program takes two input values C and D from the user and calculates Z=(A-B)-(C-D)
 ; using the predefined values of A and B. It then displays the values of A, B, C, D, and Z in decimal, binary, 
 ;and hexadecimal formats   
