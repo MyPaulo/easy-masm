@@ -97,7 +97,7 @@ start:
     L1: ; Start of the L1 loop
         call ReadInt ; read an integer from the user
         mov [EDI], EAX ; Store the integer read from the user into the current position of the vector
-        add EDI, TYPE SDWORD ; Increment the address stored in the EDI register by the size of a signed double-word (SDWORD)
+        add EDI, TYPE Vector ; Increment the address stored in the EDI register by the size of a signed double-word (SDWORD)
     loop L1 ; End of the L1 loop
 
     skip: ; Start of the skip section

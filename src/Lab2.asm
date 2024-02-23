@@ -1,10 +1,8 @@
 INCLUDE Irvine32.inc
 INCLUDELIB Irvine32.lib
 
-
 INCLUDELIB kernel32.lib
 INCLUDELIB user32.lib
-
 
 TITLE test.asm 
 
@@ -19,8 +17,8 @@ TITLE test.asm
     val1 dword 4040h
     val2 word 1555h
     val3 byte "Hello World", 0
-
 .code
+
 main PROC
 
 	; program syntax here
@@ -49,4 +47,5 @@ main PROC
 
 main ENDP
 	; insert additional procedure here
+    
 END main

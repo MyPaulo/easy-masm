@@ -1,5 +1,420 @@
 INCLUDE Irvine32.inc
 INCLUDELIB Irvine32.lib
+; these two lines are only necessary if you're not using Visual Studio
+INCLUDELIB kernel32.lib
+INCLUDELIB user32.lib
+
+TITLE
+; Name: 
+; Date: 
+; ID: 
+; Description:  Calculate fibonacci sequence (fn-1)+(fn-2)
+
+.data
+
+	n0 DWORD 0
+	n1 DWORD 1
+	cur DWORD 0
+	prompt BYTE "Enter N terms: ", 0
+	fib BYTE "Fibonacci sequence with N = ", 0
+	is BYTE " is ", 0
+	space BYTE " ", 0
+
+.code
+main PROC
+
+	; Clear the console
+	call Clrscr
+	
+	; Write prompt to console
+	mov edx, OFFSET prompt
+	call WriteString
+
+	; Read input from keyboard
+	call ReadDec
+
+	; Write message to console
+	mov edx, OFFSET fib
+	call WriteString	; write fibonacci message
+	call WriteDec		; write the inputted character
+	mov edx, OFFSET is
+	call WriteString
+	mov edx, OFFSET space	; move space offset into edx for later use
+
+	; Set ecx as the loop counter
+	mov ecx, eax
+    inc ecx
+
+	L1:
+		; Write current number to console
+		mov eax, cur
+		call WriteDec
+		call writestring	; write a space
+
+		; Compare current number with n1
+		; If current is less than n1, we know that we're at n = 0
+		cmp eax, n1
+		jge J1			; jump to algorithm for n>0
+
+		; else...
+		mov cur, 1 		; increase current to 1 (only executed when n = 0)
+		jmp J2			; skip n>0 algorithm
+		
+		J1:
+		; sum n0 and n1 into ebx
+		mov ebx, n0
+		add ebx, n1
+
+		; move sum of n0 + n1 into current
+		mov cur, ebx
+		
+		; move n1 into n0
+		mov ebx, n1
+		mov n0, ebx
+
+		; move current into n1
+		mov ebx, cur
+		mov n1, ebx
+
+		J2:
+		
+	loop L1
+
+	call Crlf
+
+	exit
+
+main ENDP
+END main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+COMMENT ?INCLUDE Irvine32.inc
+INCLUDELIB Irvine32.lib
 INCLUDELIB kernel32.lib
 INCLUDELIB user32.lib
 
@@ -60,210 +475,21 @@ main PROC
 
 main ENDP
 END main
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-;second way of doing this which is faster
-COMMENT ?
-INCLUDE Irvine32.inc
-INCLUDELIB Irvine32.lib
-INCLUDELIB kernel32.lib
-INCLUDELIB user32.lib
-
-.data
-    ; Declare and initialize data
-    promptN BYTE "Enter N terms: ",0  ; Prompt for user input
-    fibArray DWORD 50 DUP(0)  ; Array to store Fibonacci numbers
-    promptSpace BYTE " ", 0  ; Space character for formatting output
-    PromptDisplay BYTE "Fibonacci sequence with N = ", 0  ; Output prompt
-    fibSequencePrompt BYTE " is: ", 0  ; Output prompt
-
-.code
-main PROC
-    ; Prompt user for input
-    mov EDX, offset promptN
-    call WriteString
-    call ReadInt  ; Read user input
-    inc EAX  ; Increment EAX because Fibonacci sequence starts from 0
-
-    ; Check if user input is larger than array size
-    cmp EAX, LENGTHOF fibArray
-    jbe @F  ; If not, jump to label @F
-    mov EAX, LENGTHOF fibArray  ; If yes, limit the input to the array size
-    @@:  ; Label @F
-    ; Store the number of terms
-    mov ECX, EAX  ; ECX is used as a counter in loops
-    mov EBX, EAX  ; EBX stores the number of terms
-    
-    ; Initialize the first two Fibonacci numbers
-    mov eax, 1
-    mov fibArray[0], 0  ; First Fibonacci number is 0
-    mov fibArray[4], eax  ; Second Fibonacci number is 1
-    
-    ; Generate the Fibonacci sequence
-    mov EDI, 2  ; Start from the third number
-fibLoop:
-    mov eax, fibArray[EDI * 4 - 4]  ; Get the previous Fibonacci number
-    add eax, fibArray[EDI * 4 - 8]  ; Add the number before the previous one
-    mov fibArray[EDI * 4], eax  ; Store the new Fibonacci number
-    inc EDI  ; Move to the next number
-    loop fibLoop  ; Repeat until all numbers are generated
-
-    ; Print the Fibonacci sequence
-    mov ECX, EBX  ; Set the counter to the number of terms
-    mov EDI, 0  ; Start from the first number
-    mov EDX, offset PromptDisplay
-    call WriteString
-    mov EAX, EBX
-    call WriteDec  ; Print the number of terms
-    mov EDX, offset fibSequencePrompt
-    call WriteString
-    printLoop:
-        mov eax, fibArray[EDI * 4]  ; Get the current Fibonacci number
-        call WriteDec  ; Print the number
-        mov EDX, offset promptSpace
-        call WriteString  ; Print a space
-        inc EDI  ; Move to the next number
-        loop printLoop  ; Repeat until all numbers are printed
-
-    call Crlf  ; Print a newline
-    call DumpRegs ; Displays registers in console
-    exit  ; Exit the program
-
-main ENDP
-END main
 ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
