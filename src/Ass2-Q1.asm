@@ -9,7 +9,8 @@ TITLE Ass2-Q1.asm
 ; Name: 
 ; Date: 
 ; ID: 
-; Description: 
+; Description: The ASM program inputs integers, sums negatives, counts positives, finds minimums, 
+                ;and checks for palindrome in the array.
 
 .data
 	; data declarations go here

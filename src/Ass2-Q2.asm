@@ -5,10 +5,12 @@ INCLUDELIB kernel32.lib
 INCLUDELIB user32.lib
 
 TITLE
-; Name: 
+; Name:
 ; Date: 
 ; ID: 
-; Description:  Calculate fibonacci sequence (fn-1)+(fn-2)
+; Description: A program that reads an integer number N and then displays 
+			  ;the first N values of the Fibonacci number sequence, 
+			  ;i.e Calculate fibonacci sequence (fn-1)+(fn-2)
 
 .data
 

@@ -5,10 +5,11 @@ INCLUDELIB user32.lib
 
 TITLE Ass2-Q1.asm
 
-; Name: Paul Osuji      
+; Name:
 ; Date: 
-; ID: 110157511
-; Description: 
+; ID: 
+; Description: The ASM program takes a string, reverses it, swaps its case(small and capital), 
+               ;and displays the count of uppercase letters and total characters.
 
 .data
     buff BYTE 129 DUP(0)  ; Array for 128 characters + null terminator
@@ -87,7 +88,7 @@ endPrintLoop:
     call WriteString
     call CRLF
     ; Display the register values
-    call DumpRegs
+    ;call DumpRegs
     exit
 main ENDP
 END main

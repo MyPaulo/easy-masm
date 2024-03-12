@@ -16,16 +16,22 @@ INCLUDELIB user32.lib
 .data
     
 	; data declarations go here
-    
-
-   
+	arr DWORD 10,25,45,3,37,66
+	len = ($ - arr) / 4 ; return number of element in array
+	;count DWORD 6
+	
 .code
 main PROC
-
 	; code goes here
-    
-
-	;call DumpRegs ; displays registers in console
+	mov EAX,0
+	mov ECX, len
+	mov EBX, offset arr
+	next:
+	add EAX, [EBX]
+	add EBX, type arr ; add ebx, 4
+	loop next
+	call WriteDec
+	call DumpRegs ; displays registers in console
 	exit
 
 main ENDP
