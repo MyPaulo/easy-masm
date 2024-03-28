@@ -1,23 +1,30 @@
-
 ; Include necessary libraries
 INCLUDE Irvine32.inc
 INCLUDELIB Irvine32.lib
 INCLUDELIB kernel32.lib
 INCLUDELIB user32.lib
 
+TITLE Ass4.asm 
+; Name: Paul Osuji, Temirlan Rashid,
+; Date: 
+; ID: 110157511
+; Description: 
+
 .data
     ; Declare buffers and prompts
-    hexBuff BYTE 20 dup(?)
-    decBuff BYTE 10 dup(?),0
+    hexBuff BYTE 20 dup(?),0
+    decBuff BYTE 20 dup(?),0  ; Increase the buffer size to accommodate larger decimal inputs
     promptdo DB "What do you want to do, Lovely? ",0
-    promptValue DB "Enter a 32 bit decimal number to convert to hex: ",0
+    promptValue DB "Enter a 64 bit decimal number to convert to hex: ",0  ; Update the prompt message
     promptHex DB "Enter a hexadecimal string to convert to binary: ",0
     promptBye DB "Thank you, Sweetey Honey Bun",0
     promptLost DB "Get Lost, you Sweetey Honey Bun",0
+    promptEAX BYTE "Binary content of EAX: ", 0
 
 .code
 
 ; Procedure to convert hexadecimal input to binary
+
 HexInput PROC
     ; Prompt for hexadecimal input
     mov EDX, OFFSET promptHex
@@ -27,7 +34,7 @@ HexInput PROC
     mov ECX, SIZEOF hexBuff
     call ReadString
     xor EAX, EAX
-    
+
     begin:
         ; Convert hexadecimal to binary
         mov BL, [EDX]
@@ -50,6 +57,9 @@ HexInput PROC
 
         endLetter:
         ; Output binary result
+        call CRLF
+        mov EDX, OFFSET promptEAX
+        call WriteString
         call WriteBin
         call CRLF
         ret
@@ -57,11 +67,11 @@ HexInput ENDP
 
 ; Procedure to convert decimal input to hexadecimal
 HexOutput PROC
-    mov ECX, 8
+    mov ECX, 16  ; Set the loop counter for 16 digits (64 bits / 4 bits per digit)
     mov ESI, OFFSET decBuff
     begin:
         ; Convert decimal to hexadecimal
-        rol EBX, 4
+        rol rbx, 4  ; Use RBX instead of EBX for 64-bit operations
         mov DL, BL
         and DL, 0Fh
         cmp DL, 0Ah
@@ -83,6 +93,7 @@ HexOutput ENDP
 
 ; Main procedure
 main PROC
+     call Clrscr
     ; Prompt for operation choice
     lea EDX, promptdo
     call WriteString
@@ -101,11 +112,11 @@ main PROC
     jmp Exit1
 decHex:
     ; Decimal to hexadecimal conversion
-    mov EAX,0
+    mov RAX,0  ; Use RAX instead of EAX for 64-bit operations
     LEA EDX, promptValue
     call WriteString
-    call ReadDec
-    mov EBX, EAX
+    call ReadDec  ; Update to ReadDec64 to handle 64-bit inputs
+    mov RBX, RAX  ; Use RBX instead of EBX for 64-bit operations
     call HexOutput
     jmp bye
 hexBin:
@@ -131,5 +142,4 @@ exitP:
     ; Exit program
     exit
 main ENDP
-
 END main

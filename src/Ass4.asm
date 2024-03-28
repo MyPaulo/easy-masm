@@ -1,23 +1,31 @@
-
 ; Include necessary libraries
 INCLUDE Irvine32.inc
 INCLUDELIB Irvine32.lib
 INCLUDELIB kernel32.lib
 INCLUDELIB user32.lib
 
+TITLE Ass4.asm 
+; Name: Paul Osuji, Temirlan Rashid,
+; Date: 
+; ID: 110157511
+; Description: 
+
 .data
     ; Declare buffers and prompts
-    hexBuff BYTE 20 dup(?)
-    decBuff BYTE 10 dup(?),0
+    hexBuff BYTE 20 dup(?),0
+    decBuff BYTE 11 dup(?),0
     promptdo DB "What do you want to do, Lovely? ",0
     promptValue DB "Enter a 32 bit decimal number to convert to hex: ",0
     promptHex DB "Enter a hexadecimal string to convert to binary: ",0
     promptBye DB "Thank you, Sweetey Honey Bun",0
     promptLost DB "Get Lost, you Sweetey Honey Bun",0
+    promptEAX BYTE "Binary content of EAX: ", 0
+    promptEBX BYTE "Hex content of EBX: ", 0
 
 .code
 
 ; Procedure to convert hexadecimal input to binary
+
 HexInput PROC
     ; Prompt for hexadecimal input
     mov EDX, OFFSET promptHex
@@ -27,7 +35,7 @@ HexInput PROC
     mov ECX, SIZEOF hexBuff
     call ReadString
     xor EAX, EAX
-    
+
     begin:
         ; Convert hexadecimal to binary
         mov BL, [EDX]
@@ -50,6 +58,9 @@ HexInput PROC
 
         endLetter:
         ; Output binary result
+        call CRLF
+        mov EDX, OFFSET promptEAX
+        call WriteString
         call WriteBin
         call CRLF
         ret
@@ -83,6 +94,7 @@ HexOutput ENDP
 
 ; Main procedure
 main PROC
+     call Clrscr
     ; Prompt for operation choice
     lea EDX, promptdo
     call WriteString
@@ -106,7 +118,11 @@ decHex:
     call WriteString
     call ReadDec
     mov EBX, EAX
+    Call CRLF
+    mov EDX, OFFSET promptEBX
+    call WriteString
     call HexOutput
+    Call CRLF
     jmp bye
 hexBin:
     ; Hexadecimal to binary conversion
@@ -115,6 +131,7 @@ hexBin:
     jmp exitP
 Exit1:
     ; Exit message for invalid operation choice
+    Call CRLF
     mov EDX, OFFSET promptLost
     call WriteString
     call CRLF
@@ -131,5 +148,31 @@ exitP:
     ; Exit program
     exit
 main ENDP
-
 END main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
