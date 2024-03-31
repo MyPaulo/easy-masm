@@ -5,9 +5,9 @@ INCLUDELIB kernel32.lib
 INCLUDELIB user32.lib
 
 TITLE Ass4.asm 
-; Name: Paul Osuji, Temirlan Rashid,
+; Name: 
 ; Date: 
-; ID: 110157511
+; ID: 
 ; Description: 
 
 .data

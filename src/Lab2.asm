@@ -7,8 +7,8 @@ INCLUDELIB user32.lib
 TITLE test.asm 
 
 ; Program Description: This program adds and substracts 32 bit registers
-; Author: Paul Osuji
-; Creation Date: /1/24
+; Author: 
+; Creation Date: 
 ; Revisions: 
 ; Date: 
 

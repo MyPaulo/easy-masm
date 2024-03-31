@@ -8,8 +8,8 @@ INCLUDELIB user32.lib
 TITLE Ass5-Q1.asm 
 
  
-; Name: Paul Osuji, Temirlan Rashid,
-; Date: 110157511, 110024209
+; Name: 
+; Date: 
 ; ID: 
 ; Description:  The greatest common divisor (GCD) of two integers X and Y 
                 ;is the largest integer Z that will evenly divide both integers. 

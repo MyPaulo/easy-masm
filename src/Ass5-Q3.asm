@@ -7,8 +7,8 @@ INCLUDELIB user32.lib
 
 TITLE
 
-; Name: Paul Osuji, Temirlan Rashid,
-; Date: 110157511, 110024209
+; Name: 
+; Date: 
 ; ID:
 ; Description: Prompt the user for the coefficients a, b, and c 
     ;of a polynomial in the form 𝑎𝑥2 + 𝑏𝑥 +𝑐 = 0. 
