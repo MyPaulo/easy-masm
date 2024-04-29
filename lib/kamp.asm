@@ -1,8 +1,8 @@
 TITLE
 
-; Name: 
+; Name: Jola
 ; Date: 13/03/2024
-; ID: 
+; ID: 110078347
 ; Description: 
 
 INCLUDE Irvine32.inc
@@ -250,7 +250,7 @@ stackendp:
 StackStatus ENDP
 
 main PROC
-    call Clrscr
+
 	; code goes here
 Top:
     mov EDX, OFFSET promptDo

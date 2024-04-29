@@ -250,7 +250,7 @@ stackendp:
 StackStatus ENDP
 
 main PROC
-
+    call Clrscr
 	; code goes here
 Top:
     mov EDX, OFFSET promptDo
